@@ -3,7 +3,6 @@ package com.example.coolvideo.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.coolvideo.data.DAO.VideoDao
 import com.example.coolvideo.data.Repository.HomeVideosRepository
 import com.example.coolvideo.data.model.Video
 import kotlinx.coroutines.launch
@@ -12,14 +11,18 @@ import kotlinx.coroutines.launch
 class HomeViewModel(private val repository: HomeVideosRepository) : ViewModel() {
     var dataChanged = MutableLiveData<Int>()
 
-    lateinit var videosList: MutableList<Video>
-
     var videos=ArrayList<Video>()
+
+    init {
+        launch{
+            repository.deleteAllVideo()
+        }
+    }
 
     fun getVideos(){
         launch{
-            videosList=repository.getVideos()
-            videos.addAll(videosList)
+            val video=repository.getVideos()
+            videos.addAll(video)
         }
     }
 

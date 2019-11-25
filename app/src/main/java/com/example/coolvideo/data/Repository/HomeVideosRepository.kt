@@ -11,6 +11,10 @@ class HomeVideosRepository private constructor(private val videoDao: VideoDao){
         list
     }
 
+    suspend fun deleteAllVideo(){
+        videoDao.deteleAlVideo()
+    }
+
     companion object {
 
         private var instance: HomeVideosRepository? = null

@@ -7,7 +7,6 @@ import org.litepal.LitePal
 
 class VideoDao {
     fun getVideoList():MutableList<Video>{
-        LitePal.deleteAll(Video::class.java)
         var video: Video=Video("apple", R.drawable.apple)
         video.save()
         video=Video("banana", R.drawable.banana)
@@ -31,5 +30,9 @@ class VideoDao {
         if (videoList != null && videoList.isNotEmpty()) {
             LitePal.saveAll(videoList)
         }
+    }
+
+    fun deteleAlVideo(){
+        LitePal.deleteAll(Video::class.java)
     }
 }

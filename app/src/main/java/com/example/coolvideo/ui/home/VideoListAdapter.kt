@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ExpandableListView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -46,4 +47,8 @@ class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         return videoList.size
     }
+}
+
+class VideoListListener(val clickListener: (videoId: Int)->Unit){
+    fun onClick(video:Video)=clickListener(video.id)
 }
