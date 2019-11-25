@@ -5,11 +5,10 @@ import org.litepal.crud.LitePalSupport
 
 class Video(
     @SerializedName("video_name")
-    val videoName: String,
+    var videoName: String,
 
     @SerializedName("video_imgUrl")
-    val videoImgUrl:Int
+    var videoImgUrl:Int
 ) : LitePalSupport(){
-    @Transient val id = 0
-    var videoId = 0
+    @Transient val id:Long = 0
 }
