@@ -4,11 +4,12 @@ import com.google.gson.annotations.SerializedName
 import org.litepal.crud.LitePalSupport
 
 class Video(
-    @SerializedName("video_name")
+    @SerializedName("id")
+    var id: Long,
+    @SerializedName("videoName")
     var videoName: String,
 
-    @SerializedName("video_imgUrl")
-    var videoImgUrl:Int
+    @SerializedName("videoImgUrl")
+    var videoImgUrl:String
 ) : LitePalSupport(){
-    @Transient val id:Long = 0
 }

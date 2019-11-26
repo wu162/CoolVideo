@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.coolvideo.R
 import com.example.coolvideo.data.Repository.HomeVideosRepository
 import com.example.coolvideo.data.database.CoolVideoDatabase
+import com.example.coolvideo.data.network.CoolVideoNetwork
 import com.example.coolvideo.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -26,7 +27,8 @@ class HomeFragment : Fragment() {
         binding.videoList.adapter=adapter
         binding.videoList.layoutManager=GridLayoutManager(activity,2)
 
-        homeViewModel=ViewModelProviders.of(this, HomeModelFactory(HomeVideosRepository.getInstance(CoolVideoDatabase.getVideoDao()))).get(HomeViewModel::class.java)
+        homeViewModel=ViewModelProviders.of(this, HomeModelFactory(HomeVideosRepository.getInstance(CoolVideoDatabase.getVideoDao(),
+            CoolVideoNetwork.getInstance()))).get(HomeViewModel::class.java)
 
         binding.setLifecycleOwner(this)
         homeViewModel.dataChanged.observe(this, Observer { dataChanged ->

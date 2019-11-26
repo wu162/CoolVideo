@@ -1,4 +1,4 @@
-package com.example.coolvideo.ui.dashboard
+package com.example.coolvideo.ui.me
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.coolvideo.R
 
-class DashboardFragment : Fragment() {
+class MeFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var meViewModel: MeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        meViewModel =
+            ViewModelProviders.of(this).get(MeViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_me, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        meViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

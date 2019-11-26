@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface HomeFragService {
     @GET("getVideos")
-    fun getHomeFragVideos():Call<MutableList<HomeFragVideos>>
+    fun getHomeFragVideos():Call<HomeFragVideos>
 }

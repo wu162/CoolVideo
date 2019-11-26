@@ -51,7 +51,7 @@ class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.ViewHolder>(),Vid
         binding.video=video
         binding.clickListener=this
         binding.videoName.text = video.videoName
-        Glide.with(context!!).load(video.videoImgUrl).into(binding.videoImg)
+        Glide.with(context!!).load(baseUrl+video.videoImgUrl).into(binding.videoImg)
     }
 
     override fun getItemCount(): Int {
@@ -60,5 +60,9 @@ class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.ViewHolder>(),Vid
 
     override fun onItemClick(video: Video) {
         Toast.makeText(context, "${video.id}", Toast.LENGTH_SHORT).show()
+    }
+
+    companion object{
+        private val baseUrl="http://47.100.37.242:8080/images/"
     }
 }
