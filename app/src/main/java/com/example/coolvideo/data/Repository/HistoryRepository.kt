@@ -1,0 +1,40 @@
+package com.example.coolvideo.data.Repository
+
+import android.util.Log
+import com.example.coolvideo.data.DAO.HistoryDao
+import com.example.coolvideo.data.DAO.VideoDao
+import com.example.coolvideo.data.network.CoolVideoNetwork
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
+class HistoryRepository private constructor(private val historyDao: HistoryDao, private val network: CoolVideoNetwork) {
+    suspend fun getHistorys() = withContext(Dispatchers.IO) {
+        var list = historyDao.getHistoryList()
+        if(list.isEmpty()){
+            list.addAll(network.fetchHistory().historys)
+            historyDao.saveHistoryList(list)
+        }
+        list
+    }
+
+    suspend fun deleteAllHistory(){
+        historyDao.deteleAllHistory()
+    }
+
+    companion object {
+
+        private var instance: HistoryRepository? = null
+
+        fun getInstance(historyDao: HistoryDao, network: CoolVideoNetwork): HistoryRepository {
+            if (instance == null) {
+                synchronized(HistoryRepository::class.java) {
+                    if (instance == null) {
+                        instance = HistoryRepository(historyDao,network)
+                    }
+                }
+            }
+            return instance!!
+        }
+
+    }
+}

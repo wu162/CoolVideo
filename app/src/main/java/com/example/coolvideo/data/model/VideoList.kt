@@ -1,5 +1,5 @@
 package com.example.coolvideo.data.model
 
-class HomeFragVideos {
+class VideoList {
     lateinit var videos: List<Video>
 }

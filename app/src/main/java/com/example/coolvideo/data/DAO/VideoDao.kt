@@ -11,18 +11,6 @@ class VideoDao {
 //        video.save()
 //        video=Video("banana", R.drawable.banana)
 //        video.save()
-//        video=Video("cherry", R.drawable.cherry)
-//        video.save()
-//        video=Video("grape", R.drawable.grape)
-//        video.save()
-//        video=Video("apple", R.drawable.apple)
-//        video.save()
-//        video=Video("banana", R.drawable.banana)
-//        video.save()
-//        video=Video("cherry", R.drawable.cherry)
-//        video.save()
-//        video=Video("grape", R.drawable.grape)
-//        video.save()
         return LitePal.findAll(Video::class.java)
     }
 

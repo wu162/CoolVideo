@@ -1,5 +1,7 @@
 package com.example.coolvideo.data.network
 
+import com.example.coolvideo.data.network.api.FavorService
+import com.example.coolvideo.data.network.api.HistoryService
 import com.example.coolvideo.data.network.api.HomeFragService
 
 import retrofit2.Call
@@ -11,7 +13,12 @@ import kotlin.coroutines.suspendCoroutine
 
 class CoolVideoNetwork {
     private val homeFragService=ServiceCreator.create(HomeFragService::class.java)
+    private val historyService=ServiceCreator.create(HistoryService::class.java)
+    private val favorService=ServiceCreator.create(FavorService::class.java)
+
     suspend fun fetchHomeFragVideos()=homeFragService.getHomeFragVideos().await()
+    suspend fun fetchHistory()=historyService.getHistory().await()
+    suspend fun fetchFavor()=favorService.getFavor().await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

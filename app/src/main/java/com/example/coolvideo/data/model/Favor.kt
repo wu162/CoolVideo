@@ -3,9 +3,13 @@ package com.example.coolvideo.data.model
 import com.google.gson.annotations.SerializedName
 import org.litepal.crud.LitePalSupport
 
-class Video(
+class Favor(
     @SerializedName("id")
     var id: Long,
+
+    @SerializedName("userId")
+    var userId: String,
+
     @SerializedName("videoName")
     var videoName: String,
 

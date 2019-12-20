@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.coolvideo.R
 import com.example.coolvideo.ui.EditInfo.EditInfoActivity
+import com.example.coolvideo.ui.history.HistoryActivity
 import com.qmuiteam.qmui.widget.grouplist.QMUICommonListItemView
 import com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView
 
@@ -59,7 +60,17 @@ class MeFrament : Fragment() {
             QMUICommonListItemView.HORIZONTAL,
             QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON)
         val onClickListener: View.OnClickListener=View.OnClickListener { v->
-            Toast.makeText(activity,"click",Toast.LENGTH_SHORT).show()
+            if (v is QMUICommonListItemView){
+                when(v.text){
+                    "观看记录" -> {
+                        val intent=Intent(activity,HistoryActivity::class.java)
+                        activity!!.startActivity(intent)
+                    }
+                    "我的收藏" -> {
+                        Toast.makeText(activity,"我的收藏",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
 
         QMUIGroupListView.newSection(context)

@@ -4,4 +4,5 @@
     <string name="title_me">Me</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_editinfo">Edit Info</string>
+    <string name="history_activity">观看记录</string>
 </resources>
