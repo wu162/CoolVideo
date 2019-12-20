@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE">
+
+    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+        android:id="@+id/meedit_user_img"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:clickable="true"
+        android:src="@drawable/potrait"
+        app:qmui_border_color="?attr/qmui_config_color_gray_6"
+        app:qmui_border_width="1px"
+        app:qmui_is_circle="true"
+        app:qmui_selected_border_color="?attr/qmui_config_color_gray_4"
+        app:qmui_selected_border_width="1px"
+        app:qmui_selected_mask_color="?attr/qmui_config_color_gray_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView
+        android:id="@+id/meedit_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meedit_user_img" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

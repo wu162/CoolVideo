@@ -17,7 +17,7 @@
         android:background="@drawable/me_userinfo_selector">
 
         <com.qmuiteam.qmui.widget.QMUIRadiusImageView
-            android:id="@+id/QMUIRadiusImageView"
+            android:id="@+id/me_user_image"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -38,9 +38,9 @@
             android:layout_marginStart="32dp"
             android:text="用户名"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/QMUIRadiusImageView"
-            app:layout_constraintStart_toEndOf="@+id/QMUIRadiusImageView"
-            app:layout_constraintTop_toTopOf="@+id/QMUIRadiusImageView" />
+            app:layout_constraintBottom_toBottomOf="@+id/me_user_image"
+            app:layout_constraintStart_toEndOf="@+id/me_user_image"
+            app:layout_constraintTop_toTopOf="@+id/me_user_image" />
 
         <TextView
             android:id="@+id/textView3"
@@ -50,21 +50,12 @@
             android:text=">"
             android:textColor="#CCCCCC"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/QMUIRadiusImageView"
+            app:layout_constraintBottom_toBottomOf="@+id/me_user_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/QMUIRadiusImageView" />
+            app:layout_constraintTop_toTopOf="@+id/me_user_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <View-->
-<!--        android:id="@+id/sep"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="20dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:background="#EEEEEE"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/userInfo" />-->
 
     <com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView
         android:id="@+id/meList"

@@ -13,13 +13,8 @@
 
     <fragment
         android:id="@+id/navigation_me"
-        android:name="com.example.coolvideo.ui.me.MeFragment"
+        android:name="com.example.coolvideo.ui.me.MeFrament"
         android:label="@string/title_me"
-        tools:layout="@layout/fragment_me" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.coolvideo.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_me" >
+    </fragment>
 </navigation>

@@ -1,32 +1,47 @@
 package com.example.coolvideo.ui.me
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.coolvideo.R
+import com.example.coolvideo.ui.EditInfo.EditInfoActivity
 import com.qmuiteam.qmui.widget.grouplist.QMUICommonListItemView
 import com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView
 
-class MeFragment : Fragment() {
+class MeFrament : Fragment() {
 
-    private lateinit var meViewModel: MeViewModel
+    private lateinit var meFrament : MeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        meViewModel =
+        meFrament =
             ViewModelProviders.of(this).get(MeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_me, container, false)
 
+        initSwitchToEditInfo(root)
         initGroupList(root)
         return root
+    }
+
+    private fun initSwitchToEditInfo(root: View) {
+        val userInfo:ConstraintLayout=root.findViewById(R.id.userInfo)
+        userInfo.setOnClickListener {
+            val intent=Intent(activity,EditInfoActivity::class.java)
+            activity!!.startActivity(intent)
+            activity!!.overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
+        }
     }
 
     private fun initGroupList(root: View) {
