@@ -5,4 +5,5 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_editinfo">Edit Info</string>
     <string name="history_activity">观看记录</string>
+    <string name="permission_request_denied">Permission request denied</string>
 </resources>
