@@ -35,13 +35,14 @@ class EditInfoActivity : AppCompatActivity() {
         val userImg=findViewById<QMUIRadiusImageView>(R.id.meedit_user_img)
         userImg.setOnClickListener {
             Log.i("img","click")
-            val items=arrayOf("更改头像")
-            QMUIDialog.MenuDialogBuilder(this)
-                .addItems(items) { dialog: DialogInterface, which: Int ->
-                    Toast.makeText(this,"你选择了 " + items[which], Toast.LENGTH_SHORT).show()
-                    dialog.dismiss()
-                }
-                .create(mCurrentDialogStyle).show()
+//            val items=arrayOf("更改头像")
+//            QMUIDialog.MenuDialogBuilder(this)
+//                .addItems(items) { dialog: DialogInterface, which: Int ->
+//                    Toast.makeText(this,"你选择了 " + items[which], Toast.LENGTH_SHORT).show()
+//                    dialog.dismiss()
+//                }
+//                .create(mCurrentDialogStyle).show()
+
         }
     }
 

@@ -5,18 +5,18 @@
 
     <data>
         <variable
-            name="history"
-            type="com.example.coolvideo.data.model.History" />
+            name="favor"
+            type="com.example.coolvideo.data.model.Favor" />
         <variable
             name="clickListener"
-            type="com.example.coolvideo.ui.history.HistoryListAdapter" />
+            type="com.example.coolvideo.ui.favor.FavorItemListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:onClick="@{()->clickListener.onItemClick(history)}">
+        android:onClick="@{()->clickListener.onItemClick(favor)}">
 
         <ImageView
             android:id="@+id/video_img"
@@ -36,8 +36,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
             android:text="视频名字"
             android:textSize="22sp"
             app:layout_constrainedWidth="true"
@@ -45,17 +45,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/video_img"
             app:layout_constraintTop_toTopOf="@+id/video_img" />
-
-        <TextView
-            android:id="@+id/user_last_seen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="2019-12-12"
-            android:textColor="#aaaaaa"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/video_name"
-            app:layout_constraintTop_toBottomOf="@+id/video_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

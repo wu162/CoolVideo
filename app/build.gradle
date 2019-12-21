@@ -60,4 +60,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
     implementation 'com.qmuiteam:qmui:1.4.0'
+    implementation 'com.zhihu.android:matisse:0.5.3-beta3'
 }

@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.coolvideo.R
 import com.example.coolvideo.ui.EditInfo.EditInfoActivity
+import com.example.coolvideo.ui.favor.FavorActivity
 import com.example.coolvideo.ui.history.HistoryActivity
 import com.qmuiteam.qmui.widget.grouplist.QMUICommonListItemView
 import com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView
@@ -67,7 +68,8 @@ class MeFrament : Fragment() {
                         activity!!.startActivity(intent)
                     }
                     "我的收藏" -> {
-                        Toast.makeText(activity,"我的收藏",Toast.LENGTH_SHORT).show()
+                        val intent=Intent(activity,FavorActivity::class.java)
+                        activity!!.startActivity(intent)
                     }
                 }
             }
