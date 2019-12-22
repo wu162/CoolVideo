@@ -18,6 +18,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.example.coolvideo.R
+import com.example.coolvideo.data.network.CoolVideoNetwork
 import com.example.coolvideo.databinding.ActivityEditinfoBinding
 import com.qmuiteam.qmui.widget.QMUIRadiusImageView
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
@@ -49,8 +50,9 @@ class EditInfoActivity : AppCompatActivity() {
 
     private fun initSubmitListener() {
         binding.infoSubmit.setOnClickListener {
-            var file=File(avatarPath)
-
+            editInfoViewModel.launch{
+                CoolVideoNetwork.getInstance().uploadAvatar(avatarPath)
+            }
         }
     }
 
@@ -106,10 +108,9 @@ class EditInfoActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) { // 操作成功了
             when (requestCode) {
                 REQUEST_CODE_CHOOSE -> {
-                    val imglisturi = Matisse.obtainResult(data)
+                    val imglisturi = Matisse.obtainPathResult(data)
                     Log.i("onActivityResult",imglisturi[0].toString())
-                    var filepath=getRealPath(imglisturi[0])
-                    Log.i("onActivityResult",filepath)
+                    avatarPath=imglisturi[0].toString()
                     Glide.with(this).load(imglisturi[0]).into(binding.meeditUserImg)
                 }
             }
