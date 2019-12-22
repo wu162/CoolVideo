@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/control_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="#66000000"
+    android:layoutDirection="ltr"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/progress_fullscreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@id/exo_play"
+            android:layout_marginRight="-10dp"
+            style="@style/ExoMediaButton.Play" />
+
+        <ImageButton
+            android:id="@id/exo_pause"
+            android:layout_marginRight="-10dp"
+            style="@style/ExoMediaButton.Pause" />
+
+        <LinearLayout
+            android:id="@+id/progress_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="visible">
+
+        <com.google.android.exoplayer2.ui.DefaultTimeBar
+            android:id="@id/exo_progress"
+            android:layout_width="0dp"
+            android:layout_height="26dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@id/exo_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:textColor="#FFBEBEBE"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="\/"
+            android:textColor="#FFBEBEBE"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@id/exo_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="1dp"
+            android:paddingRight="4dp"
+            android:textColor="#FFBEBEBE"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/danmu_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="弹幕"
+            android:checked="true"
+            android:visibility="gone"/>
+
+
+
+        <EditText
+            android:id="@+id/danmu_edit"
+            android:layout_width="0dp"
+            android:layout_height="26dp"
+            android:layout_weight="2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="40dp"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:cursorVisible="false"
+            android:hint="发 个 弹 幕 吧"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColorHint="#DDDDDD"
+            android:background="@drawable/danmu_edit"
+            android:visibility="gone"/>
+
+        <FrameLayout
+            android:id="@+id/exo_fullscreen_button"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:id="@+id/exo_fullscreen_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_fullscreen" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
