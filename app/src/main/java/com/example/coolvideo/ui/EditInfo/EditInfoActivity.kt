@@ -117,19 +117,6 @@ class EditInfoActivity : AppCompatActivity() {
         }
     }
 
-    private fun getRealPath(uri: Uri): String {
-        var path = uri.path
-        var split = path!!.split("/")
-
-        var filePath = getMatissePhotoPath() + File.separatorChar + split[split.size - 1]
-        return filePath
-    }
-
-    private fun getMatissePhotoPath(): String {
-        var file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-        return file.absolutePath
-    }
-
 
     private fun initInfoList() {
         var meList = findViewById<QMUIGroupListView>(R.id.meedit_list)

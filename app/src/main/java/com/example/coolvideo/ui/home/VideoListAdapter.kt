@@ -1,6 +1,7 @@
 package com.example.coolvideo.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.coolvideo.R
 import com.example.coolvideo.data.model.Video
 import com.example.coolvideo.databinding.VideoItemBinding
+import com.example.coolvideo.ui.Video.VideoActivity
 
 class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.ViewHolder>(),VideoItemListener{
     private var context: Context? = null
@@ -59,7 +61,9 @@ class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.ViewHolder>(),Vid
     }
 
     override fun onItemClick(video: Video) {
-        Toast.makeText(context, "${video.id}", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "${video.id}", Toast.LENGTH_SHORT).show()
+        var intent= Intent(context,VideoActivity::class.java)
+        context!!.startActivity(intent)
     }
 
     companion object{
