@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -26,6 +27,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.engine.impl.GlideEngine
+import kotlinx.android.synthetic.main.activity_editinfo.*
 import java.io.File
 import java.io.FileOutputStream
 
@@ -155,21 +157,15 @@ class EditInfoActivity : AppCompatActivity() {
 
 
     private fun initInfoList() {
-        var meList = findViewById<QMUIGroupListView>(R.id.meedit_list)
-        val history=meList.createItemView(
-            ContextCompat.getDrawable(this, R.mipmap.tubiao),
-            "昵称",
-            null,
-            QMUICommonListItemView.HORIZONTAL,
-            QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON)
+        val name=meedit_list.createItemView("昵称")
+        name.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CUSTOM)
+        var editText=EditText(this)
         val onClickListener: View.OnClickListener=View.OnClickListener { v->
             Toast.makeText(this,"click",Toast.LENGTH_SHORT).show()
         }
-
         QMUIGroupListView.newSection(this)
-            .setLeftIconSize(50,50)
-            .addItemView(history,onClickListener)
-            .addTo(meList)
+            .addItemView(name,onClickListener)
+            .addTo(meedit_list)
     }
 
 
