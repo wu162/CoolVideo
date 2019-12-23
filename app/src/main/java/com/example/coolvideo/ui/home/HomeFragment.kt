@@ -1,5 +1,7 @@
 package com.example.coolvideo.ui.home
 
+import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ import com.example.coolvideo.data.Repository.HomeVideosRepository
 import com.example.coolvideo.data.database.CoolVideoDatabase
 import com.example.coolvideo.data.network.CoolVideoNetwork
 import com.example.coolvideo.databinding.FragmentHomeBinding
+import com.example.coolvideo.ui.login.LoginActivity
 
 class HomeFragment : Fragment() {
 
@@ -39,8 +42,12 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//
-//    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        var pref=activity!!.getSharedPreferences("userInfo", MODE_PRIVATE)
+        if (pref.getString("name","").toString() ==""){
+            var intent= Intent(activity, LoginActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }

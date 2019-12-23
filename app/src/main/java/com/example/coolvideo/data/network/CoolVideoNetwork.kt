@@ -1,9 +1,6 @@
 package com.example.coolvideo.data.network
 
-import com.example.coolvideo.data.network.api.AvatarService
-import com.example.coolvideo.data.network.api.FavorService
-import com.example.coolvideo.data.network.api.HistoryService
-import com.example.coolvideo.data.network.api.HomeFragService
+import com.example.coolvideo.data.network.api.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -21,6 +18,7 @@ class CoolVideoNetwork {
     private val historyService=ServiceCreator.create(HistoryService::class.java)
     private val favorService=ServiceCreator.create(FavorService::class.java)
     private val avatarService=ServiceCreator.create(AvatarService::class.java)
+    private val userService=ServiceCreator.create(UserService::class.java)
 
     suspend fun fetchHomeFragVideos()=homeFragService.getHomeFragVideos().await()
     suspend fun fetchHistory()=historyService.getHistory().await()
@@ -30,6 +28,9 @@ class CoolVideoNetwork {
         var requestBody = RequestBody.create(MediaType.parse("*/*"), file)
         var fileToUpload = MultipartBody.Part.createFormData("img", file.name, requestBody)
         avatarService.updateUserPhoto(fileToUpload).await()
+    }
+    suspend fun addUser(userName : String,password : String): String {
+        return userService.addUser(userName,password).await()
     }
 
     private suspend fun <T> Call<T>.await(): T {

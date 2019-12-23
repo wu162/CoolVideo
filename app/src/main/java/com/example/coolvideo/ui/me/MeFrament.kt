@@ -1,7 +1,13 @@
 package com.example.coolvideo.ui.me
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.ContextWrapper
 import android.content.Intent
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +18,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.coolvideo.R
 import com.example.coolvideo.ui.EditInfo.EditInfoActivity
 import com.example.coolvideo.ui.favor.FavorActivity
 import com.example.coolvideo.ui.history.HistoryActivity
 import com.qmuiteam.qmui.widget.grouplist.QMUICommonListItemView
 import com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView
+import kotlinx.android.synthetic.main.fragment_me.*
+import java.io.File
 
 class MeFrament : Fragment() {
 
@@ -76,8 +86,27 @@ class MeFrament : Fragment() {
         }
 
         QMUIGroupListView.newSection(context)
+            .setLeftIconSize(50,50)     //设置左边图标大小
             .addItemView(history,onClickListener)
             .addItemView(collection,onClickListener)
             .addTo(meList)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getInfo()
+    }
+
+    private fun getInfo() {
+        var pref=activity!!.getSharedPreferences("userInfo", MODE_PRIVATE)
+        val avatarPath=pref.getString("avatarPath","").toString()
+        Log.i("me",avatarPath)
+
+        Glide.with(context!!)
+            .load(File(avatarPath))
+            .skipMemoryCache(true)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .into(me_user_image)
+        me_user_name.text=pref.getString("name","").toString()
     }
 }
