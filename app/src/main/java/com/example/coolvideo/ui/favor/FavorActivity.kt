@@ -24,6 +24,7 @@ class FavorActivity : AppCompatActivity() {
         binding.favorList.layoutManager= LinearLayoutManager(this)
 
         favorViewModel= ViewModelProviders.of(this, FavorModelFactory(
+            this,
             FavorRepository.getInstance(
                 CoolVideoDatabase.getFavorDao(),
                 CoolVideoNetwork.getInstance()))).get(FavorViewModel::class.java)

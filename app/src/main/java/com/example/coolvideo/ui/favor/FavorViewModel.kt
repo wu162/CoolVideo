@@ -1,5 +1,7 @@
 package com.example.coolvideo.ui.favor
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,7 +9,7 @@ import com.example.coolvideo.data.Repository.FavorRepository
 import com.example.coolvideo.data.model.Favor
 import kotlinx.coroutines.launch
 
-class FavorViewModel (private val repository: FavorRepository) : ViewModel() {
+class FavorViewModel (private val context: Context, private val repository: FavorRepository) : ViewModel() {
     var dataChanged = MutableLiveData<Int>()
 
     var favors=ArrayList<Favor>()
@@ -20,7 +22,9 @@ class FavorViewModel (private val repository: FavorRepository) : ViewModel() {
 
     fun getFavor(){
         launch{
-            val favor=repository.getFavors()
+            var pref=context.getSharedPreferences("userInfo", MODE_PRIVATE)
+            val id=pref.getString("id","").toString()
+            val favor=repository.getFavors(id)
             favors.addAll(favor)
         }
     }

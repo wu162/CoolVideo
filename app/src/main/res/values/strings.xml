@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CoolVideo</string>
-    <string name="title_home">Home</string>
-    <string name="title_me">Me</string>
+    <string name="title_home">主页</string>
+    <string name="title_me">我的</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_editinfo">Edit Info</string>
     <string name="history_activity">观看记录</string>
@@ -96,4 +96,9 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="videoActivityTitle">Video</string>
+    <string name="EditInfoTitle">编辑资料</string>
+    <string name="LoginTitle">注册</string>
+    <string name="FavorActivityTitle">我的收藏</string>
+    <string name="HistoryActivityTitle">观看记录</string>
 </resources>

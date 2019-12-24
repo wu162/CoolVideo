@@ -46,7 +46,7 @@ class HistoryListAdapter : RecyclerView.Adapter<HistoryListAdapter.ViewHolder>()
     }
 
     override fun onItemClick(history: History) {
-        Toast.makeText(context, "${history.id}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "${history.userId}", Toast.LENGTH_SHORT).show()
     }
 
     companion object{

@@ -1,5 +1,7 @@
 package com.example.coolvideo.ui.history
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +10,7 @@ import com.example.coolvideo.data.model.History
 import com.example.coolvideo.data.model.Video
 import kotlinx.coroutines.launch
 
-class HistoryViewModel(private val repository: HistoryRepository) : ViewModel() {
+class HistoryViewModel(private val context: Context, private val repository: HistoryRepository) : ViewModel() {
     var dataChanged = MutableLiveData<Int>()
 
     var historys=ArrayList<History>()
@@ -21,7 +23,9 @@ class HistoryViewModel(private val repository: HistoryRepository) : ViewModel() 
 
     fun getHistory(){
         launch{
-            val history=repository.getHistorys()
+            var pref=context.getSharedPreferences("userInfo", MODE_PRIVATE)
+            val id=pref.getString("id","").toString()
+            val history=repository.getHistorys(id)
             historys.addAll(history)
         }
     }

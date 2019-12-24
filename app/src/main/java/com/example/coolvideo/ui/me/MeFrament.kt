@@ -52,13 +52,13 @@ class MeFrament : Fragment() {
     private fun initGroupList(root: View) {
         var meList: QMUIGroupListView= root.findViewById(R.id.meList)
         val history=meList.createItemView(
-            ContextCompat.getDrawable(context!!, R.mipmap.tubiao),
+            ContextCompat.getDrawable(context!!, R.drawable.history),
             "观看记录",
             null,
             QMUICommonListItemView.HORIZONTAL,
             QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON)
         val collection=meList.createItemView(
-            ContextCompat.getDrawable(context!!, R.mipmap.tubiao),
+            ContextCompat.getDrawable(context!!, R.drawable.favor),
             "我的收藏",
             null,
             QMUICommonListItemView.HORIZONTAL,

@@ -8,10 +8,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class HistoryRepository private constructor(private val historyDao: HistoryDao, private val network: CoolVideoNetwork) {
-    suspend fun getHistorys() = withContext(Dispatchers.IO) {
+    suspend fun getHistorys(id:String) = withContext(Dispatchers.IO) {
         var list = historyDao.getHistoryList()
         if(list.isEmpty()){
-            list.addAll(network.fetchHistory().historys)
+            list.addAll(network.fetchHistory(id).historys)
             historyDao.saveHistoryList(list)
         }
         list

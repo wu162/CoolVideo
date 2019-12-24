@@ -44,7 +44,7 @@ class FavorListAdapter : RecyclerView.Adapter<FavorListAdapter.ViewHolder>(),Fav
     }
 
     override fun onItemClick(favor: Favor) {
-        Toast.makeText(context, "${favor.id}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "${favor.userId}", Toast.LENGTH_SHORT).show()
     }
 
     companion object{

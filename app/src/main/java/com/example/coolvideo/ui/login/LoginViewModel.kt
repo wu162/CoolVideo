@@ -42,9 +42,6 @@ class LoginViewModel (private val context: Context) : ViewModel() {
                     saveInfo(id,avatarPath)
                     (context as Activity).finish()
                 }
-//                    var pref=getSharedPreferences("userInfo", MODE_PRIVATE)
-//                    Log.i("pref",pref.getString("name","").toString())
-//                    Log.i("pref",pref.getString("psw","").toString())
             }
         }
     }

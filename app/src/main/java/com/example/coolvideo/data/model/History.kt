@@ -4,9 +4,6 @@ import com.google.gson.annotations.SerializedName
 import org.litepal.crud.LitePalSupport
 
 class History(
-    @SerializedName("id")
-    var id: Long,
-
     @SerializedName("userId")
     var userId: String,
 

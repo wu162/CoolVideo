@@ -6,10 +6,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class FavorRepository private constructor(private val favorDao: FavorDao, private val network: CoolVideoNetwork) {
-    suspend fun getFavors() = withContext(Dispatchers.IO) {
+    suspend fun getFavors(id:String) = withContext(Dispatchers.IO) {
         var list = favorDao.getFavorList()
         if(list.isEmpty()){
-            list.addAll(network.fetchFavor().favors)
+            list.addAll(network.fetchFavor(id).favors)
             favorDao.saveFavorList(list)
         }
         list

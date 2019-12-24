@@ -37,7 +37,15 @@ class EditInfoActivity : AppCompatActivity() {
         binding.editInfoViewModel=editInfoViewModel
 
         initAvatar()
+        initName()
         initChangeUserImg()
+    }
+
+    private fun initName() {
+        var pref=getSharedPreferences("userInfo", MODE_PRIVATE)
+        var name=pref.getString("name","").toString()
+        binding.editinfoName.setText(name)
+        editInfoViewModel.name.set(name)
     }
 
     private fun initAvatar() {

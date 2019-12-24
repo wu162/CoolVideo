@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -45,7 +46,9 @@ public class VideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-        String videoUrls="https://v-cdn.zjol.com.cn/276984.mp4";
+//        String videoUrls="https://v-cdn.zjol.com.cn/276984.mp4";
+        String videoUrls=getIntent().getStringExtra("videoUrl");
+        Log.i("Video",videoUrls);
         String videoTitle="测试视频";
         VideoManager videoManager =new VideoManager(this,videoUrls);
         DanmuManager danmuManager=new DanmuManager(this);

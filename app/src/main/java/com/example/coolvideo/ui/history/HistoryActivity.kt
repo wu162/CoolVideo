@@ -24,6 +24,7 @@ class HistoryActivity : AppCompatActivity() {
         binding.historyList.layoutManager=LinearLayoutManager(this)
 
         historyViewModel= ViewModelProviders.of(this, HistoryModelFactory(
+            this,
             HistoryRepository.getInstance(
                 CoolVideoDatabase.getHistoryDao(),
                 CoolVideoNetwork.getInstance()))).get(HistoryViewModel::class.java)
