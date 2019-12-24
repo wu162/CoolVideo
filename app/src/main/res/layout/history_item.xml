@@ -9,7 +9,7 @@
             type="com.example.coolvideo.data.model.History" />
         <variable
             name="clickListener"
-            type="com.example.coolvideo.ui.history.HistoryListAdapter" />
+            type="com.example.coolvideo.ui.history.HistoryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

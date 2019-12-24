@@ -5,7 +5,7 @@ import org.litepal.crud.LitePalSupport
 
 class Video(
     @SerializedName("id")
-    var id: Long,
+    var videoId: String,
     @SerializedName("videoName")
     var videoName: String,
 

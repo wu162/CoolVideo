@@ -19,15 +19,16 @@ class HistoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding : ActivityHistoryBinding= DataBindingUtil.setContentView(this,R.layout.activity_history)
-        val adapter=HistoryListAdapter()
-        binding.historyList.adapter=adapter
-        binding.historyList.layoutManager=LinearLayoutManager(this)
 
         historyViewModel= ViewModelProviders.of(this, HistoryModelFactory(
             this,
             HistoryRepository.getInstance(
                 CoolVideoDatabase.getHistoryDao(),
                 CoolVideoNetwork.getInstance()))).get(HistoryViewModel::class.java)
+        binding.historyViewModel=historyViewModel
+        val adapter=HistoryListAdapter(historyViewModel)
+        binding.historyList.adapter=adapter
+        binding.historyList.layoutManager=LinearLayoutManager(this)
 
         historyViewModel.dataChanged.observe(this, Observer { dataChanged ->
             // Update the cached copy of the words in the adapter.

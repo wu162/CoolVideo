@@ -6,6 +6,7 @@ import com.example.coolvideo.data.DAO.VideoDao
 import com.example.coolvideo.data.network.CoolVideoNetwork
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.sql.Timestamp
 
 class HistoryRepository private constructor(private val historyDao: HistoryDao, private val network: CoolVideoNetwork) {
     suspend fun getHistorys(id:String) = withContext(Dispatchers.IO) {
@@ -15,6 +16,12 @@ class HistoryRepository private constructor(private val historyDao: HistoryDao, 
             historyDao.saveHistoryList(list)
         }
         list
+    }
+
+    suspend fun addHistory(userId : String,videoId : String,videoName : String,
+                           videoImgUrl : String, videoUrl : String,userLastSeen : Timestamp
+    ){
+        network.addHistory(userId,videoId,videoName, videoUrl,videoImgUrl,userLastSeen)
     }
 
     suspend fun deleteAllHistory(){

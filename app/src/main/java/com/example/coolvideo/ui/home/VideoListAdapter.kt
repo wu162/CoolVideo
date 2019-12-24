@@ -1,15 +1,10 @@
 package com.example.coolvideo.ui.home
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ExpandableListView
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,7 +13,7 @@ import com.example.coolvideo.data.model.Video
 import com.example.coolvideo.databinding.VideoItemBinding
 import com.example.coolvideo.ui.Video.VideoActivity
 
-class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.ViewHolder>(),VideoItemListener{
+class VideoListAdapter(homeViewModel: HomeViewModel) : RecyclerView.Adapter<VideoListAdapter.ViewHolder>(){
     private var context: Context? = null
     private lateinit var binding: VideoItemBinding
     var videoList =  listOf<Video>()
@@ -26,6 +21,7 @@ class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.ViewHolder>(),Vid
             field = value
             notifyDataSetChanged()
         }
+    private val _homeViewModel=homeViewModel
 
     class ViewHolder(val binding: VideoItemBinding) : RecyclerView.ViewHolder(binding.root) {
 //        var videoCover: ImageView
@@ -51,7 +47,7 @@ class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.ViewHolder>(),Vid
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val video = videoList[position]
         binding.video=video
-        binding.clickListener=this
+        binding.clickListener=_homeViewModel
         binding.videoName.text = video.videoName
         Glide.with(context!!).load(baseUrl+imagePath+video.videoImgUrl).into(binding.videoImg)
     }
@@ -60,23 +56,8 @@ class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.ViewHolder>(),Vid
         return videoList.size
     }
 
-    override fun onItemClick(video: Video) {
-//        Toast.makeText(context, "${video.id}", Toast.LENGTH_SHORT).show()
-        startVideoActivity(video.videoUrl)
-//        var intent= Intent(context,VideoActivity::class.java)
-//        context!!.startActivity(intent)
-    }
-
-    private fun startVideoActivity(videoUrl: String) {
-        var intent= Intent(context,VideoActivity::class.java)
-        intent.putExtra("videoUrl", baseUrl+ videoPath+videoUrl)
-        context!!.startActivity(intent)
-    }
-
-
     companion object{
         private const val baseUrl="http://47.100.37.242:8080"
         private const val imagePath="/images/"
-        private const val videoPath="/videos/"
     }
 }

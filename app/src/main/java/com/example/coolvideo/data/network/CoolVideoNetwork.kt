@@ -10,6 +10,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.sql.Timestamp
+import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -35,6 +37,11 @@ class CoolVideoNetwork {
     }
     suspend fun updateName(id:Int, userName:String){
         userService.updateName(id,userName).await()
+    }
+    suspend fun addHistory(userId : String,videoId : String,videoName : String,
+                           videoImgUrl : String, videoUrl : String,userLastSeen : Timestamp
+    ){
+        historyService.updateHistory(userId,videoId,videoName, videoUrl,videoImgUrl,userLastSeen).await()
     }
 
     private suspend fun <T> Call<T>.await(): T {

@@ -6,13 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.coolvideo.R
 import com.example.coolvideo.data.Repository.HomeVideosRepository
 import com.example.coolvideo.data.database.CoolVideoDatabase
@@ -26,12 +24,14 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View? {
         val binding: FragmentHomeBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
-        val adapter=VideoListAdapter()
+
+        homeViewModel=ViewModelProviders.of(this, HomeModelFactory(context!!,HomeVideosRepository.getInstance(CoolVideoDatabase.getVideoDao(),
+            CoolVideoNetwork.getInstance()))).get(HomeViewModel::class.java)
+        binding.homeViewModel=homeViewModel
+
+        val adapter=VideoListAdapter(homeViewModel)
         binding.videoList.adapter=adapter
         binding.videoList.layoutManager=GridLayoutManager(activity,2)
-
-        homeViewModel=ViewModelProviders.of(this, HomeModelFactory(HomeVideosRepository.getInstance(CoolVideoDatabase.getVideoDao(),
-            CoolVideoNetwork.getInstance()))).get(HomeViewModel::class.java)
 
         binding.setLifecycleOwner(this)
         homeViewModel.dataChanged.observe(this, Observer { dataChanged ->
