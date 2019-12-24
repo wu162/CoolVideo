@@ -76,6 +76,17 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+<!--        <fragment-->
+<!--            android:id="@+id/fragment_comment"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:name ="com.example.coolvideo.ui.comment.CommentFragment"/>-->
+<!--    </androidx.core.widget.NestedScrollView>-->
+
     <include layout="@layout/video_content_scrolling" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
