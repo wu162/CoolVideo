@@ -40,7 +40,7 @@
             android:name=".ui.editInfo.EditInfoActivity"
             android:label="@string/EditInfoTitle"/>
         <activity
-            android:name=".ui.Video.VideoActivity"
+            android:name=".ui.video.VideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/videoActivityTitle"
             android:theme="@style/AppTheme.NoActionBar"></activity>

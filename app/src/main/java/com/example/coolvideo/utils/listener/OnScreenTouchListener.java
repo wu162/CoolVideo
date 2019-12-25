@@ -12,7 +12,7 @@ import androidx.core.view.GestureDetectorCompat;
 
 
 import com.example.coolvideo.R;
-import com.example.coolvideo.ui.Video.VideoManager;
+import com.example.coolvideo.ui.video.VideoManager;
 import com.google.android.exoplayer2.ui.PlayerView;
 
 public class OnScreenTouchListener implements View.OnTouchListener {

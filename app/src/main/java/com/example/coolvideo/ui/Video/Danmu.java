@@ -1,4 +1,4 @@
-package com.example.coolvideo.ui.Video;
+package com.example.coolvideo.ui.video;
 
 public class Danmu {
     private Long time;

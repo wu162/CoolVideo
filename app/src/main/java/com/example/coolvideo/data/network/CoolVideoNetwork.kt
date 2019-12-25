@@ -22,6 +22,7 @@ class CoolVideoNetwork {
     private val favorService=ServiceCreator.create(FavorService::class.java)
     private val avatarService=ServiceCreator.create(AvatarService::class.java)
     private val userService=ServiceCreator.create(UserService::class.java)
+    private val commentService=ServiceCreator.create(CommentService::class.java)
 
     suspend fun fetchHomeFragVideos()=homeFragService.getHomeFragVideos().await()
     suspend fun fetchHistory(id:String)=historyService.getHistory(id).await()
@@ -42,6 +43,13 @@ class CoolVideoNetwork {
                            videoImgUrl : String, videoUrl : String,userLastSeen : Timestamp
     ){
         historyService.updateHistory(userId,videoId,videoName, videoUrl,videoImgUrl,userLastSeen).await()
+    }
+
+    suspend fun getComment(videoId : String)=commentService.getComment(videoId).await()
+
+    suspend fun addComment(userId : String, videoId : String, userName : String,
+                           commentTime : Timestamp, commentContent : String): String {
+        return commentService.addComment(userId,videoId,userName,commentTime,commentContent).await()
     }
 
     private suspend fun <T> Call<T>.await(): T {

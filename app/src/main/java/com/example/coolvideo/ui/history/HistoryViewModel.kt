@@ -8,8 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.coolvideo.data.Repository.HistoryRepository
 import com.example.coolvideo.data.model.History
-import com.example.coolvideo.data.model.Video
-import com.example.coolvideo.ui.Video.VideoActivity
+import com.example.coolvideo.ui.video.VideoActivity
 import com.example.coolvideo.utils.DateUtils
 import kotlinx.coroutines.launch
 
@@ -39,13 +38,15 @@ class HistoryViewModel(private val context: Context, private val repository: His
         launch {
             repository.addHistory(id,history.videoId.toString(),history.videoName,
                 history.videoUrl,history.videoImgUrl, DateUtils.nowDateTime)
-            startVideoActivity(history.videoUrl)
+            startVideoActivity(history)
         }
     }
 
-    private fun startVideoActivity(videoUrl: String) {
+    private fun startVideoActivity(history: History) {
         var intent= Intent(context, VideoActivity::class.java)
-        intent.putExtra("videoUrl", baseUrl+ videoPath+videoUrl)
+        intent.putExtra("videoUrl", history.videoUrl)
+        intent.putExtra("videoName", history.videoName)
+        intent.putExtra("videoId", history.videoId)
         context.startActivity(intent)
     }
 

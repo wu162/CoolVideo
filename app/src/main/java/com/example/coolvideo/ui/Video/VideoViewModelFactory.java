@@ -1,4 +1,4 @@
-package com.example.coolvideo.ui.Video;
+package com.example.coolvideo.ui.video;
 
 import android.content.Context;
 

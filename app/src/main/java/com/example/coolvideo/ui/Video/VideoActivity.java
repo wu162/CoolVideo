@@ -1,6 +1,7 @@
-package com.example.coolvideo.ui.Video;
+package com.example.coolvideo.ui.video;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -31,6 +32,10 @@ import master.flame.danmaku.ui.widget.DanmakuView;
 
 public class VideoActivity extends AppCompatActivity {
 
+    public String videoUrls;
+    public String videoTitle;
+    public String videoId;
+
     private PlayerView videoView;
     private DanmakuView danmuView;
     private View controlView;
@@ -47,7 +52,7 @@ public class VideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_video);
 
 //        String videoUrls="https://v-cdn.zjol.com.cn/276984.mp4";
-        String videoUrls=getIntent().getStringExtra("videoUrl");
+        getData();
         Log.i("Video",videoUrls);
         String videoTitle="测试视频";
         VideoManager videoManager =new VideoManager(this,videoUrls);
@@ -63,6 +68,21 @@ public class VideoActivity extends AppCompatActivity {
 
         VideoViewModelFactory videoViewModelFactory=new VideoViewModelFactory(videoManager.getPlayer(), danmuManager.getDanmakuView(),this,videoManager.getPlayerManager());
         VideoViewModel videoViewModel= new ViewModelProvider(this,videoViewModelFactory).get(VideoViewModel.class);
+    }
+
+    private void getData() {
+        Intent intent=getIntent();
+        videoUrls=intent.getStringExtra("videoUrl");
+        videoTitle=intent.getStringExtra("videoName");
+        videoId=intent.getStringExtra("videoId");
+    }
+
+    public String getVideoTitle() {
+        return videoTitle;
+    }
+
+    public String getVideoId() {
+        return videoId;
     }
 
     private void hideStatusBar() {

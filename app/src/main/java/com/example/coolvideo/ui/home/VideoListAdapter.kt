@@ -1,8 +1,6 @@
 package com.example.coolvideo.ui.home
 
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.coolvideo.R
 import com.example.coolvideo.data.model.Video
 import com.example.coolvideo.databinding.VideoItemBinding
-import com.example.coolvideo.ui.Video.VideoActivity
 
 class VideoListAdapter(homeViewModel: HomeViewModel) : RecyclerView.Adapter<VideoListAdapter.ViewHolder>(){
     private var context: Context? = null

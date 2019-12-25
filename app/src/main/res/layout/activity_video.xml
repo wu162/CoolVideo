@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.Video.VideoActivity">
+    tools:context=".ui.video.VideoActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -87,6 +87,55 @@
 <!--            android:name ="com.example.coolvideo.ui.comment.CommentFragment"/>-->
 <!--    </androidx.core.widget.NestedScrollView>-->
 
-    <include layout="@layout/video_content_scrolling" />
+<!--    <include layout="@layout/video_content_scrolling" />-->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <fragment
+        android:id="@+id/fragment_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name ="com.example.coolvideo.ui.comment.CommentFragment"/>
+    </FrameLayout>
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:background="#dddddd"-->
+<!--        android:layout_gravity="bottom">-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/editText"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="#ffffff"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="textPersonName"-->
+<!--            android:hint="发表评论"-->
+<!--            android:paddingLeft="8dp"-->
+<!--            android:paddingRight="8dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/button"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/button"-->
+<!--            android:layout_width="88dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:background="#4CAF50"-->
+<!--            android:text="发表"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
