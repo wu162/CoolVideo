@@ -90,21 +90,21 @@ public class DanmuManager implements LifecycleObserver {
      * 随机生成一些弹幕内容以供测试
      */
     private void loadDanmuList() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for(Danmu danmu : danmuList)
-                {
-                    BaseDanmaku danmaku = danmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
-                    danmaku.text = danmu.getContent();
-                    danmaku.padding = 5;
-                    danmaku.textSize = sp2px(20);
-                    danmaku.textColor = Color.WHITE;
-                    danmaku.setTime(danmu.getTime());
-                    danmakuView.addDanmaku(danmaku);
-                }
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                for(Danmu danmu : danmuList)
+//                {
+//                    BaseDanmaku danmaku = danmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
+//                    danmaku.text = danmu.getContent();
+//                    danmaku.padding = 5;
+//                    danmaku.textSize = sp2px(20);
+//                    danmaku.textColor = Color.WHITE;
+//                    danmaku.setTime(danmu.getTime());
+//                    danmakuView.addDanmaku(danmaku);
+//                }
+//            }
+//        }).start();
     }
 
     public void showDanmu(){
@@ -134,4 +134,6 @@ public class DanmuManager implements LifecycleObserver {
     public DanmakuView getDanmakuView() {
         return danmakuView;
     }
+
+    public DanmuManager getDanmuManager() { return this;}
 }

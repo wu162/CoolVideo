@@ -75,7 +75,12 @@ public class VideoActivity extends AppCompatActivity {
         hideStatusBar();
 
         commentFragment= (CommentFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_comment);
-        VideoViewModelFactory videoViewModelFactory=new VideoViewModelFactory(videoManager.getPlayer(), danmuManager.getDanmakuView(),this,videoManager.getPlayerManager());
+        VideoViewModelFactory videoViewModelFactory=new VideoViewModelFactory(
+                videoManager.getPlayer(),
+                danmuManager.getDanmakuView(),
+                this,
+                videoManager.getPlayerManager(),
+                danmuManager.getDanmuManager());
         VideoViewModel videoViewModel= new ViewModelProvider(this,videoViewModelFactory).get(VideoViewModel.class);
     }
 

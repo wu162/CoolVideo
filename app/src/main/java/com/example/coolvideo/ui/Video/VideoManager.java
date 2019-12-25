@@ -49,7 +49,7 @@ public class VideoManager extends Observable implements LifecycleObserver {
         this.context=context;
         ((AppCompatActivity)context).getLifecycle().addObserver(this);
         this.url=url;
-        this.isPlayerPlaying=true;
+        this.isPlayerPlaying=false;
         this.videoView=((Activity)context).findViewById(R.id.exoplayer);
         this.pLayerStateMessage=new PlayerStateMessage(PlayerStateMessage.Resume);
         prepareExoPlayer();
