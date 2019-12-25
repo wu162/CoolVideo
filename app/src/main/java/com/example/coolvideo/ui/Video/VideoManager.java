@@ -144,4 +144,8 @@ public class VideoManager extends Observable implements LifecycleObserver {
     public SimpleExoPlayer getPlayer(){
         return player;
     }
+
+    public Long getPlayerTime(){
+        return player.getCurrentPosition();
+    }
 }

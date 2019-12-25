@@ -63,6 +63,11 @@ class CoolVideoNetwork {
 
     suspend fun fetchDanmu(videoId:String)=danmuService.getDanmu(videoId).await()
 
+    suspend fun addDanmu(userId : String, videoId : String,
+                         time : Long, content : String){
+        danmuService.addDanmu(userId,videoId,time,content).await()
+    }
+
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {

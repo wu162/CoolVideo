@@ -2,6 +2,7 @@ package com.example.coolvideo.ui.video
 
 import android.app.Activity
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -33,6 +34,8 @@ class VideoViewModel(
     private val danmakuView: DanmakuView
     private val videoManager: VideoManager
     private val pLayerStateMessage: PlayerStateMessage
+    private lateinit var userId: String
+    private lateinit var videoId: String
     private fun initObservers(danmakuView: DanmakuView) {
         val collapsingToolbarManager =
             CollapsingToolbarManager(context, videoManager.playerManager)
@@ -112,12 +115,22 @@ class VideoViewModel(
         setupTimerBar()
         initObservers(danmakuView)
 
+        val pref=context.getSharedPreferences("userInfo",MODE_PRIVATE)
+        userId=pref.getString("id","")!!
+        videoId=(context as VideoActivity).getVideoId()
+
         launch {
             val danmuList=CoolVideoNetwork.getInstance().fetchDanmu((context as VideoActivity).getVideoId()).danmus
             for (danmu in danmuList){
-                danmuManager.addDanmaku(danmu.content,false,danmu.time)
+                danmuManager.addDanmaku(danmu.content,userId==danmu.userId,danmu.time)
             }
             videoManager.playImmediately()
+        }
+    }
+
+    fun onUserSendDanmu(content: String) {
+        launch {
+            CoolVideoNetwork.getInstance().addDanmu(userId,videoId,videoManager.playerTime,content)
         }
     }
 

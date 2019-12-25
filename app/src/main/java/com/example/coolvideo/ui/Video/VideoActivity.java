@@ -14,6 +14,7 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.TextUtils;
@@ -38,6 +39,8 @@ public class VideoActivity extends AppCompatActivity {
     public String videoId;
     private String videoUrl;
     private String videoImgUrl;
+
+    private VideoViewModel videoViewModel;
 
     private PlayerView videoView;
     private DanmakuView danmuView;
@@ -81,7 +84,7 @@ public class VideoActivity extends AppCompatActivity {
                 this,
                 videoManager.getPlayerManager(),
                 danmuManager.getDanmuManager());
-        VideoViewModel videoViewModel= new ViewModelProvider(this,videoViewModelFactory).get(VideoViewModel.class);
+        videoViewModel= new ViewModelProvider(this,videoViewModelFactory).get(VideoViewModel.class);
     }
 
     private void getData() {
@@ -107,6 +110,7 @@ public class VideoActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(content)){
                     danmuManager.userAddDanmaku(content);
                     danmuEdit.setText("");
+                    videoViewModel.onUserSendDanmu(content);
                     //隐藏键盘
                     InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(danmuEdit.getWindowToken(), 0);
@@ -154,6 +158,7 @@ public class VideoActivity extends AppCompatActivity {
         this.danmuSwitch=controlView.findViewById(R.id.danmu_switch);
         this.commentSubmit=findViewById(R.id.comment_submit);
         this.commentEdit=findViewById(R.id.comment_edit);
+
     }
 
     private void initFullscreenDialog() {
