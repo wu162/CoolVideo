@@ -47,6 +47,8 @@ class HomeViewModel(private val context : Context, private val repository: HomeV
         intent.putExtra("videoUrl", baseUrl+ videoPath+video.videoUrl)
         intent.putExtra("videoName", video.videoName)
         intent.putExtra("videoId", video.videoId)
+        intent.putExtra("videoUrl", video.videoUrl)
+        intent.putExtra("videoImgUrl", video.videoImgUrl)
         context.startActivity(intent)
     }
 

@@ -23,10 +23,19 @@ class CoolVideoNetwork {
     private val avatarService=ServiceCreator.create(AvatarService::class.java)
     private val userService=ServiceCreator.create(UserService::class.java)
     private val commentService=ServiceCreator.create(CommentService::class.java)
+    private val danmuService=ServiceCreator.create(DanmuService::class.java)
 
     suspend fun fetchHomeFragVideos()=homeFragService.getHomeFragVideos().await()
     suspend fun fetchHistory(id:String)=historyService.getHistory(id).await()
     suspend fun fetchFavor(id:String)=favorService.getFavor(id).await()
+    suspend fun getOneFavor(userId:String,videoId:String)=favorService.getOneFavor(userId,videoId).await()
+    suspend fun addFavor(userId : String, videoId : String,
+                         videoName : String, videoUrl:String, videoImgUrl : String){
+        favorService.addFavor(userId,videoId,videoName,videoUrl,videoImgUrl).await()
+    }
+    suspend fun deleteFavor(userId:String,videoId:String){
+        favorService.deleteFavor(userId,videoId).await()
+    }
     suspend fun uploadAvatar(imgPath:String){
         var file= File(imgPath)
         var requestBody = RequestBody.create(MediaType.parse("*/*"), file)
@@ -51,6 +60,8 @@ class CoolVideoNetwork {
                            commentTime : Timestamp, commentContent : String): String {
         return commentService.addComment(userId,videoId,userName,commentTime,commentContent).await()
     }
+
+    suspend fun fetchDanmu(videoId:String)=danmuService.getDanmu(videoId).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

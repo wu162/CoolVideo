@@ -47,6 +47,8 @@ class HistoryViewModel(private val context: Context, private val repository: His
         intent.putExtra("videoUrl", history.videoUrl)
         intent.putExtra("videoName", history.videoName)
         intent.putExtra("videoId", history.videoId)
+        intent.putExtra("videoUrl", history.videoUrl)
+        intent.putExtra("videoImgUrl", history.videoImgUrl)
         context.startActivity(intent)
     }
 

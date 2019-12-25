@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.example.coolvideo.R;
+import com.example.coolvideo.ui.comment.CommentFragment;
 import com.google.android.exoplayer2.ui.DefaultTimeBar;
 import com.google.android.exoplayer2.ui.PlayerView;
 
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -32,9 +34,10 @@ import master.flame.danmaku.ui.widget.DanmakuView;
 
 public class VideoActivity extends AppCompatActivity {
 
-    public String videoUrls;
     public String videoTitle;
     public String videoId;
+    private String videoUrl;
+    private String videoImgUrl;
 
     private PlayerView videoView;
     private DanmakuView danmuView;
@@ -44,18 +47,23 @@ public class VideoActivity extends AppCompatActivity {
     private LinearLayout progressFullscreen;
     private Switch danmuSwitch;
     private EditText danmuEdit;
+    private Button commentSubmit;
+    private EditText commentEdit;
     private Dialog fullScreenDialog;
+
+    CommentFragment commentFragment;
+
+    private static String baseUrl="http://47.100.37.242:8080";
+    private static String videoImgPath="/images/";
+    private static String videoPath="/videos/";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-//        String videoUrls="https://v-cdn.zjol.com.cn/276984.mp4";
         getData();
-        Log.i("Video",videoUrls);
-        String videoTitle="测试视频";
-        VideoManager videoManager =new VideoManager(this,videoUrls);
+        VideoManager videoManager =new VideoManager(this,getRealVideoUrl(videoUrl));
         DanmuManager danmuManager=new DanmuManager(this);
 
         initViews();
@@ -66,23 +74,21 @@ public class VideoActivity extends AppCompatActivity {
         initToolbar(videoManager);
         hideStatusBar();
 
+        commentFragment= (CommentFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_comment);
         VideoViewModelFactory videoViewModelFactory=new VideoViewModelFactory(videoManager.getPlayer(), danmuManager.getDanmakuView(),this,videoManager.getPlayerManager());
         VideoViewModel videoViewModel= new ViewModelProvider(this,videoViewModelFactory).get(VideoViewModel.class);
     }
 
     private void getData() {
         Intent intent=getIntent();
-        videoUrls=intent.getStringExtra("videoUrl");
         videoTitle=intent.getStringExtra("videoName");
         videoId=intent.getStringExtra("videoId");
+        videoUrl= intent.getStringExtra("videoUrl");
+        videoImgUrl=intent.getStringExtra("videoImgUrl");
     }
 
-    public String getVideoTitle() {
-        return videoTitle;
-    }
-
-    public String getVideoId() {
-        return videoId;
+    private String getRealVideoUrl(String videoUrl) {
+        return baseUrl+videoPath+videoUrl;
     }
 
     private void hideStatusBar() {
@@ -116,6 +122,12 @@ public class VideoActivity extends AppCompatActivity {
                 }
             }
         });
+
+        commentSubmit.setOnClickListener(v -> {
+            String comment=commentEdit.getText().toString();
+            commentEdit.setText("");
+            commentFragment.onSubmitComment(comment);
+        });
     }
 
     private void avoidExitFullScreen() {
@@ -135,6 +147,8 @@ public class VideoActivity extends AppCompatActivity {
         this.progressFullscreen=controlView.findViewById(R.id.progress_fullscreen);
         this.danmuEdit=controlView.findViewById(R.id.danmu_edit);
         this.danmuSwitch=controlView.findViewById(R.id.danmu_switch);
+        this.commentSubmit=findViewById(R.id.comment_submit);
+        this.commentEdit=findViewById(R.id.comment_edit);
     }
 
     private void initFullscreenDialog() {
@@ -209,5 +223,21 @@ public class VideoActivity extends AppCompatActivity {
         }else{
             closeFullscreenDialog();
         }
+    }
+
+    public String getVideoTitle() {
+        return videoTitle;
+    }
+
+    public String getVideoId() {
+        return videoId;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public String getVideoImgUrl() {
+        return videoImgUrl;
     }
 }

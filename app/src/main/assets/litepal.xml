@@ -1,6 +1,6 @@
 <litepal>
     <dbname value="cool_video" />
-    <version value="12" />
+    <version value="13" />
     <list>
         <mapping class="com.example.coolvideo.data.model.Video" />
         <mapping class="com.example.coolvideo.data.model.History" />
