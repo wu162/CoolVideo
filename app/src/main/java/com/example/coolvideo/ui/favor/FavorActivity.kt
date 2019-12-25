@@ -19,15 +19,16 @@ class FavorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding : ActivityFavorBinding= DataBindingUtil.setContentView(this,R.layout.activity_favor)
-        val adapter=FavorListAdapter()
-        binding.favorList.adapter=adapter
-        binding.favorList.layoutManager= LinearLayoutManager(this)
 
         favorViewModel= ViewModelProviders.of(this, FavorModelFactory(
             this,
             FavorRepository.getInstance(
                 CoolVideoDatabase.getFavorDao(),
                 CoolVideoNetwork.getInstance()))).get(FavorViewModel::class.java)
+
+        val adapter=FavorListAdapter(favorViewModel)
+        binding.favorList.adapter=adapter
+        binding.favorList.layoutManager= LinearLayoutManager(this)
 
         favorViewModel.dataChanged.observe(this, Observer { dataChanged ->
             // Update the cached copy of the words in the adapter.

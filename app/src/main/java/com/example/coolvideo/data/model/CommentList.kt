@@ -1,5 +1,8 @@
 package com.example.coolvideo.data.model
 
-class CommentList {
-    lateinit var comments: List<Comment>
-}
+import com.google.gson.annotations.SerializedName
+
+data class CommentList(
+    @SerializedName("comments")
+    var comments: List<Comment>
+)

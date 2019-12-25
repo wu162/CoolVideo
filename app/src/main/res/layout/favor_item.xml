@@ -9,7 +9,7 @@
             type="com.example.coolvideo.data.model.Favor" />
         <variable
             name="clickListener"
-            type="com.example.coolvideo.ui.favor.FavorItemListener" />
+            type="com.example.coolvideo.ui.favor.FavorViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

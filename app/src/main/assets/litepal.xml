@@ -1,11 +1,10 @@
 <litepal>
     <dbname value="cool_video" />
-    <version value="13" />
+    <version value="17" />
     <list>
         <mapping class="com.example.coolvideo.data.model.Video" />
         <mapping class="com.example.coolvideo.data.model.History" />
         <mapping class="com.example.coolvideo.data.model.Favor" />
-        <mapping class="com.example.coolvideo.data.model.Comment" />
     </list>
     <storage value="external" />
 </litepal>

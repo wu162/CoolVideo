@@ -8,7 +8,7 @@ import retrofit2.http.Query
 import java.sql.Timestamp
 
 interface CommentService {
-    @GET("/getVideoDanmu")
+    @GET("/getComments")
     fun getComment(@Query("videoId") videoId : String): Call<CommentList>
 
     @POST("/addComment")

@@ -36,8 +36,9 @@ class HomeViewModel(private val context : Context, private val repository: HomeV
         var pref=context.getSharedPreferences("userInfo", MODE_PRIVATE)
         val id=pref.getString("id","").toString()
         launch {
-            repository.addHistory(id,video.videoId.toString(),video.videoName,
-                                  video.videoUrl,video.videoImgUrl, DateUtils.nowDateTime)
+            //TODO 把添加历史记录的操作移到开始播放视频时
+//            repository.addHistory(id,video.videoId.toString(),video.videoName,
+//                                  video.videoUrl,video.videoImgUrl, DateUtils.nowDateTime)
             startVideoActivity(video)
         }
     }
