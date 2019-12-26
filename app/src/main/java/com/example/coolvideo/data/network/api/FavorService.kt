@@ -8,14 +8,14 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface FavorService {
-    @GET("getFavors")
+    @GET("/getFavors")
     fun getFavor(@Query("userId") userId : String):Call<FavorList>
 
-    @GET("getFavor")
+    @GET("/getFavor")
     fun getOneFavor(@Query("userId") userId : String,
                     @Query("videoId") videoId : String):Call<String>
 
-    @POST("addFavor")
+    @POST("/addFavor")
     fun addFavor(@Query("userId") userId : String,
                  @Query("videoId") videoId : String,
                  @Query("videoName") videoName : String,

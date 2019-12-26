@@ -1,8 +1,6 @@
-package com.example.coolvideo.data.Repository
+package com.example.coolvideo.data.repository
 
-import android.util.Log
 import com.example.coolvideo.data.DAO.HistoryDao
-import com.example.coolvideo.data.DAO.VideoDao
 import com.example.coolvideo.data.network.CoolVideoNetwork
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

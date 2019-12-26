@@ -3,7 +3,7 @@ package com.example.coolvideo.ui.comment
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.coolvideo.data.Repository.CommentRepository
+import com.example.coolvideo.data.repository.CommentRepository
 
 class CommentModelFactory (private val context : Context, private val repository: CommentRepository) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -77,19 +76,6 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-<!--    <androidx.core.widget.NestedScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
-<!--        <fragment-->
-<!--            android:id="@+id/fragment_comment"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:name ="com.example.coolvideo.ui.comment.CommentFragment"/>-->
-<!--    </androidx.core.widget.NestedScrollView>-->
-
-<!--    <include layout="@layout/video_content_scrolling" />-->
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -133,8 +119,8 @@
             android:layout_width="88dp"
             android:layout_height="40dp"
             android:layout_marginEnd="16dp"
-            android:background="#4CAF50"
             android:text="发表"
+            android:background="@drawable/pink_button_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

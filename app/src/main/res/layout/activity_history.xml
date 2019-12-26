@@ -13,10 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/history_List"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/history_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:refreshing="@{HistoryViewModel.isLoading}"
+            app:onRefreshListener="@{()->HistoryViewModel.onRefresh()}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/history_List"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

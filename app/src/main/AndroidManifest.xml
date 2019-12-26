@@ -20,7 +20,8 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/LoginTitle"></activity>
+            android:label="@string/LoginTitle"
+            android:theme="@style/AppTheme.NoActionBar">></activity>
         <activity
             android:name=".ui.favor.FavorActivity"
             android:label="@string/FavorActivityTitle"/>

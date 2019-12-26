@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.coolvideo.R
 import com.example.coolvideo.data.network.CoolVideoNetwork
+import com.example.coolvideo.data.repository.VideoRepository
+import com.example.coolvideo.utils.DateUtils
 import com.example.coolvideo.utils.MyObservable
 import com.example.coolvideo.utils.MyObserver
 import com.example.coolvideo.utils.PlayerStateMessage
@@ -26,7 +28,8 @@ class VideoViewModel(
     danmakuView: DanmakuView,
     context: Context,
     videoManager: VideoManager,
-    danmuManager: DanmuManager
+    danmuManager: DanmuManager,
+    repository: VideoRepository
 ) : ViewModel(), MyObservable {
     private val observers: ArrayList<MyObserver>
     private val context: Context
@@ -125,6 +128,15 @@ class VideoViewModel(
                 danmuManager.addDanmaku(danmu.content,userId==danmu.userId,danmu.time)
             }
             videoManager.playImmediately()
+
+            var pref=context.getSharedPreferences("userInfo", MODE_PRIVATE)
+            val id=pref.getString("id","").toString()
+            val videoActivity=context as VideoActivity
+            val datetime=DateUtils.nowDateTime
+            repository.addHistoryToServer(id,videoId.toString(),videoActivity.videoTitle,
+                videoActivity.videoUrl,videoActivity.videoImgUrl, datetime)
+            repository.addHistoryLocal(id,videoId.toString(),videoActivity.videoTitle,
+                videoActivity.videoUrl,videoActivity.videoImgUrl, datetime)
         }
     }
 

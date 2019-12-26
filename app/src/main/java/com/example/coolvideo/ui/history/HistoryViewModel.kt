@@ -3,10 +3,11 @@ package com.example.coolvideo.ui.history
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.coolvideo.data.Repository.HistoryRepository
+import com.example.coolvideo.data.repository.HistoryRepository
 import com.example.coolvideo.data.model.History
 import com.example.coolvideo.ui.video.VideoActivity
 import com.example.coolvideo.utils.DateUtils
@@ -14,6 +15,7 @@ import kotlinx.coroutines.launch
 
 class HistoryViewModel(private val context: Context, private val repository: HistoryRepository) : ViewModel(),HistoryItemListener {
     var dataChanged = MutableLiveData<Int>()
+    var isLoading= ObservableField<Boolean>()
 
     var historys=ArrayList<History>()
 
@@ -33,13 +35,7 @@ class HistoryViewModel(private val context: Context, private val repository: His
     }
 
     override fun onItemClick(history: History) {
-        var pref=context.getSharedPreferences("userInfo", MODE_PRIVATE)
-        val id=pref.getString("id","").toString()
-        launch {
-            repository.addHistory(id,history.videoId.toString(),history.videoName,
-                history.videoUrl,history.videoImgUrl, DateUtils.nowDateTime)
-            startVideoActivity(history)
-        }
+        startVideoActivity(history)
     }
 
     private fun startVideoActivity(history: History) {
@@ -50,6 +46,19 @@ class HistoryViewModel(private val context: Context, private val repository: His
         intent.putExtra("videoUrl", history.videoUrl)
         intent.putExtra("videoImgUrl", history.videoImgUrl)
         context.startActivity(intent)
+    }
+
+    public fun onRefresh(){
+        isLoading.set(true)
+        launch {
+            repository.deleteAllHistory()
+            var pref=context.getSharedPreferences("userInfo", MODE_PRIVATE)
+            val id=pref.getString("id","").toString()
+            val history=repository.getHistorys(id)
+            historys.clear()
+            historys.addAll(history)
+            isLoading.set(false)
+        }
     }
 
     private fun launch(block: suspend () -> Unit) = viewModelScope.launch {

@@ -7,6 +7,9 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.example.coolvideo.R;
+import com.example.coolvideo.data.database.CoolVideoDatabase;
+import com.example.coolvideo.data.network.CoolVideoNetwork;
+import com.example.coolvideo.data.repository.VideoRepository;
 import com.example.coolvideo.ui.comment.CommentFragment;
 import com.google.android.exoplayer2.ui.DefaultTimeBar;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -83,7 +86,9 @@ public class VideoActivity extends AppCompatActivity {
                 danmuManager.getDanmakuView(),
                 this,
                 videoManager.getPlayerManager(),
-                danmuManager.getDanmuManager());
+                danmuManager.getDanmuManager(),
+                VideoRepository.Companion.getInstance(CoolVideoDatabase.INSTANCE.getHistoryDao(),
+                        CoolVideoNetwork.Companion.getInstance()));
         videoViewModel= new ViewModelProvider(this,videoViewModelFactory).get(VideoViewModel.class);
     }
 
@@ -135,6 +140,11 @@ public class VideoActivity extends AppCompatActivity {
         commentSubmit.setOnClickListener(v -> {
             String comment=commentEdit.getText().toString();
             commentEdit.setText("");
+
+            //隐藏键盘
+            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(danmuEdit.getWindowToken(), 0);
+
             commentFragment.onSubmitComment(comment);
         });
     }

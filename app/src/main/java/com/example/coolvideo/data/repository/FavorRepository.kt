@@ -1,4 +1,4 @@
-package com.example.coolvideo.data.Repository
+package com.example.coolvideo.data.repository
 
 import com.example.coolvideo.data.DAO.FavorDao
 import com.example.coolvideo.data.network.CoolVideoNetwork

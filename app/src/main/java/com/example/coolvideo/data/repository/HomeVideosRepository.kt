@@ -1,13 +1,10 @@
-package com.example.coolvideo.data.Repository
+package com.example.coolvideo.data.repository
 
-import android.util.Log
 import com.example.coolvideo.data.DAO.VideoDao
 import com.example.coolvideo.data.network.CoolVideoNetwork
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import java.sql.Timestamp
-import java.util.*
 
 class HomeVideosRepository private constructor(private val videoDao: VideoDao, private val network: CoolVideoNetwork){
     suspend fun getVideos() = withContext(Dispatchers.IO) {

@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.coolvideo.R
-import com.example.coolvideo.data.Repository.HomeVideosRepository
+import com.example.coolvideo.data.repository.HomeVideosRepository
 import com.example.coolvideo.data.database.CoolVideoDatabase
 import com.example.coolvideo.data.network.CoolVideoNetwork
 import com.example.coolvideo.databinding.FragmentHomeBinding

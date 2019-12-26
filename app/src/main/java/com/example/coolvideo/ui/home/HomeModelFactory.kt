@@ -3,7 +3,7 @@ package com.example.coolvideo.ui.home
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.coolvideo.data.Repository.HomeVideosRepository
+import com.example.coolvideo.data.repository.HomeVideosRepository
 
 class HomeModelFactory(private val context : Context,private val repository: HomeVideosRepository) : ViewModelProvider.NewInstanceFactory() {
 

@@ -3,7 +3,7 @@ package com.example.coolvideo.ui.history
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.coolvideo.data.Repository.HistoryRepository
+import com.example.coolvideo.data.repository.HistoryRepository
 
 class HistoryModelFactory(private val context: Context, private val repository: HistoryRepository) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")

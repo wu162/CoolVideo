@@ -6,10 +6,9 @@ import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.coolvideo.data.Repository.HomeVideosRepository
+import com.example.coolvideo.data.repository.HomeVideosRepository
 import com.example.coolvideo.data.model.Video
 import com.example.coolvideo.ui.video.VideoActivity
-import com.example.coolvideo.utils.DateUtils
 import kotlinx.coroutines.launch
 import kotlin.collections.ArrayList
 
@@ -33,14 +32,7 @@ class HomeViewModel(private val context : Context, private val repository: HomeV
     }
 
     override fun onItemClick(video: Video) {
-        var pref=context.getSharedPreferences("userInfo", MODE_PRIVATE)
-        val id=pref.getString("id","").toString()
-        launch {
-            //TODO 把添加历史记录的操作移到开始播放视频时
-//            repository.addHistory(id,video.videoId.toString(),video.videoName,
-//                                  video.videoUrl,video.videoImgUrl, DateUtils.nowDateTime)
-            startVideoActivity(video)
-        }
+        startVideoActivity(video)
     }
 
     private fun startVideoActivity(video: Video) {

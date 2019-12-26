@@ -10,12 +10,16 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestListener
 import com.example.coolvideo.R
 import com.example.coolvideo.data.network.CoolVideoNetwork
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.FileOutputStream
+import kotlinx.coroutines.withContext
+import java.io.*
+import java.net.URL
 
 class LoginViewModel (private val context: Context) : ViewModel() {
 
@@ -36,14 +40,35 @@ class LoginViewModel (private val context: Context) : ViewModel() {
             else -> {
                 submitClick.value = submitClick.value?.plus(1)    //防止用户多次点击注册按钮
                 launch{
-                    val id=CoolVideoNetwork.getInstance().addUser(name.get()!!,password.get()!!)
-                    val avatarPath=setDefaultAvatar(id)
-                    CoolVideoNetwork.getInstance().uploadAvatar(avatarPath)
-                    saveInfo(id,avatarPath)
-                    (context as Activity).finish()
+                    val result=CoolVideoNetwork.getInstance().addUser(name.get()!!,password.get()!!)
+                    if (result=="fail"){
+                        showInfo("已存在该用户名")
+                    }else if (result[0]=='e'){
+                        val id=result.split(",")[1]
+                        Log.i("tokens",id)
+                        val bitmap=downloadAvatar(id)
+                        val avatarPath=saveBitmap(bitmap,id)
+                        saveInfo(id,avatarPath)
+                        (context as Activity).finish()
+                    } else{
+                        val id=result.split(",")[1]
+                        val avatarPath=setDefaultAvatar(id)
+                        CoolVideoNetwork.getInstance().uploadAvatar(avatarPath)
+                        saveInfo(id,avatarPath)
+                        (context as Activity).finish()
+                    }
                 }
             }
         }
+    }
+
+    suspend fun downloadAvatar(id: String)=withContext(Dispatchers.IO){
+        var bitmap=Glide.with(context)
+            .asBitmap()
+            .load("$baseUrl$avatarPath$id.jpg")
+            .into(256,256)
+            .get()
+        bitmap
     }
 
     private fun showInfo(s: String) {
@@ -68,6 +93,10 @@ class LoginViewModel (private val context: Context) : ViewModel() {
     fun setDefaultAvatar(id: String): String {
         val drawable = context.resources.getDrawable(R.drawable.potrait);
         val bitmap = (drawable as BitmapDrawable).bitmap
+        return saveBitmap(bitmap,id)
+    }
+
+    private fun saveBitmap(bitmap: Bitmap?, id: String): String {
         val cw = ContextWrapper(context);
         val directory = cw.getDir("avatar", Context.MODE_PRIVATE)
         val file = File(directory, "$id.jpg")
@@ -75,7 +104,7 @@ class LoginViewModel (private val context: Context) : ViewModel() {
             Log.i("path", file.toString())
             try {
                 var fos = FileOutputStream(file)
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+                bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, fos)
                 fos.flush()
                 fos.close()
 //                CoolVideoNetwork.getInstance().uploadAvatar(file.toString())
@@ -92,5 +121,10 @@ class LoginViewModel (private val context: Context) : ViewModel() {
         } catch (t: Throwable) {
             t.printStackTrace()
         }
+    }
+
+    companion object{
+        private const val baseUrl="http://47.100.37.242:8080"
+        private const val avatarPath="/avatar/"
     }
 }

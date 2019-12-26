@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coolvideo.R
-import com.example.coolvideo.data.Repository.FavorRepository
+import com.example.coolvideo.data.repository.FavorRepository
 import com.example.coolvideo.data.database.CoolVideoDatabase
 import com.example.coolvideo.data.network.CoolVideoNetwork
 import com.example.coolvideo.databinding.ActivityFavorBinding
@@ -26,6 +26,7 @@ class FavorActivity : AppCompatActivity() {
                 CoolVideoDatabase.getFavorDao(),
                 CoolVideoNetwork.getInstance()))).get(FavorViewModel::class.java)
 
+        binding.favorViewModel=favorViewModel
         val adapter=FavorListAdapter(favorViewModel)
         binding.favorList.adapter=adapter
         binding.favorList.layoutManager= LinearLayoutManager(this)
