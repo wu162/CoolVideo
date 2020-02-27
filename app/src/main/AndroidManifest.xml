@@ -21,7 +21,7 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/LoginTitle"
-            android:theme="@style/AppTheme.NoActionBar">></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ui.favor.FavorActivity"
             android:label="@string/FavorActivityTitle"/>
